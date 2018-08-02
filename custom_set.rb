@@ -1,5 +1,6 @@
 require "pry"
 require 'set'
+# Instructions were not clear on how to solve this problem so I decided to create a class and create methods based on the test provided in 3.rb
 class CustomSet
 
   attr_accessor :data

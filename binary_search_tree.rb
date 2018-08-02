@@ -2,15 +2,18 @@ require "pry"
 
 class BinarySearchTree
     attr_accessor :root
-
+    # sets initial root to nil
   	def initialize
   		@root = nil
   	end
-
+# every time a new value is inserted it check if it nil is true for root.
+# if it is then it created a Node.new
+#  else it used the insert method to add the value.
     def insert(value)
       @root.nil? ? @root = Node.new(value) : @root.insert(value)
     end
-
+    # check the value given and the location of the node.
+    # using recursion for both search and insert it continues calling the method until it has transeversed through the tree or returns the node. 
     def tree_search( value, node=@root )
       return nil if node.nil?
       if value < node.key
