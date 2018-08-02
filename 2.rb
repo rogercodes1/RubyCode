@@ -15,7 +15,7 @@
 # Your task is to clean up differently formatted telephone numbers by removing punctuation and the country code (1) if present.
 #
 # For example, the inputs
-# phone_number = "+1 (613)-995-0253"
+phone_number = "+1 (613)-995-0253"
 # phone_number = "613-995-0153"
 # phone_number = "1 613 995 0253"
 # phone_number = "613.995.0253"
@@ -28,75 +28,80 @@
 
 # require 'minitest/autorun'
 
-
+require "pry"
 # MY CODE Start
+# I used regex to simplify the code to remove any non digit chars.
+
 def us_number(phone_number)
   num = phone_number.gsub(/[^0-9]/,"")
-  if num.size == 11 && num[0] == "1"
-    num.slice! "1"
-    num
-  elsif num.size == 10 && num[0].to_i.between?(2,9) && num[0].to_i.between?(2,9)
+  # if it was a size of 11 and had a 1 it is fair to assume
+  # it is a valid phone number
+  num = if num.size == 11 && num[0] == "1"
+          num.slice! "1"
+          num
+        end
+  if num.size == 10 && num[0].to_i.between?(2,9) && num[0].to_i.between?(2,9)
     num
   else
     puts "Not a valid number"
     nil
   end
-
 end
+puts us_number(phone_number)
 
 # us_number(phone_number)
 # END of code.
 
-require 'minitest/autorun'
-require_relative 'phone_number'
+# require 'minitest/autorun'
+# require_relative 'phone_number'
 
 # Common test data version: 1.2.0 39cba0d
-class PhoneNumberTest < Minitest::Test
-  def test_cleans_the_number
-    assert_equal "2234567890", PhoneNumber.clean("(223) 456-7890")
-  end
-
-  def test_cleans_numbers_with_dots
-    assert_equal "2234567890", PhoneNumber.clean("223.456.7890")
-  end
-
-  def test_cleans_numbers_with_multiple_spaces
-    assert_equal "2234567890", PhoneNumber.clean("223 456   7890   ")
-  end
-
-  def test_invalid_when_9_digits
-    assert_nil PhoneNumber.clean("123456789")
-  end
-
-  def test_invalid_when_11_digits_does_not_start_with_a_1
-    assert_nil PhoneNumber.clean("22234567890")
-  end
-
-  def test_valid_when_11_digits_and_starting_with_1
-    assert_equal "2234567890", PhoneNumber.clean("12234567890")
-  end
-
-  def test_valid_when_11_digits_and_starting_with_1_even_with_punctuation
-    assert_equal "2234567890", PhoneNumber.clean("+1 (223) 456-7890")
-  end
-
-  def test_invalid_when_more_than_11_digits
-    assert_nil PhoneNumber.clean("321234567890")
-  end
-
-  def test_invalid_with_letters
-    assert_nil PhoneNumber.clean("123-abc-7890")
-  end
-
-  def test_invalid_with_punctuations
-    assert_nil PhoneNumber.clean("123-@:!-7890")
-  end
-
-  def test_invalid_if_area_code_does_not_start_with_2_9
-    assert_nil PhoneNumber.clean("(123) 456-7890")
-  end
-
-  def test_invalid_if_exchange_code_does_not_start_with_2_9
-    assert_nil PhoneNumber.clean("(223) 056-7890")
-  end
-end
+# class PhoneNumberTest < Minitest::Test
+#   def test_cleans_the_number
+#     assert_equal "2234567890", PhoneNumber.clean("(223) 456-7890")
+#   end
+#
+#   def test_cleans_numbers_with_dots
+#     assert_equal "2234567890", PhoneNumber.clean("223.456.7890")
+#   end
+#
+#   def test_cleans_numbers_with_multiple_spaces
+#     assert_equal "2234567890", PhoneNumber.clean("223 456   7890   ")
+#   end
+#
+#   def test_invalid_when_9_digits
+#     assert_nil PhoneNumber.clean("123456789")
+#   end
+#
+#   def test_invalid_when_11_digits_does_not_start_with_a_1
+#     assert_nil PhoneNumber.clean("22234567890")
+#   end
+#
+#   def test_valid_when_11_digits_and_starting_with_1
+#     assert_equal "2234567890", PhoneNumber.clean("12234567890")
+#   end
+#
+#   def test_valid_when_11_digits_and_starting_with_1_even_with_punctuation
+#     assert_equal "2234567890", PhoneNumber.clean("+1 (223) 456-7890")
+#   end
+#
+#   def test_invalid_when_more_than_11_digits
+#     assert_nil PhoneNumber.clean("321234567890")
+#   end
+#
+#   def test_invalid_with_letters
+#     assert_nil PhoneNumber.clean("123-abc-7890")
+#   end
+#
+#   def test_invalid_with_punctuations
+#     assert_nil PhoneNumber.clean("123-@:!-7890")
+#   end
+#
+#   def test_invalid_if_area_code_does_not_start_with_2_9
+#     assert_nil PhoneNumber.clean("(123) 456-7890")
+#   end
+#
+#   def test_invalid_if_exchange_code_does_not_start_with_2_9
+#     assert_nil PhoneNumber.clean("(223) 056-7890")
+#   end
+# end

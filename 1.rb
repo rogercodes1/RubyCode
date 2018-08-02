@@ -7,6 +7,9 @@
 #  { 'Randy' => ['Input.txt', 'Output.txt'], 'Stan' => ['Code.py'] }
 #
 require "byebug"
+# Hello TargetCW team.
+# For this challenge
+
 module FileOwners
   def self.group_by_owners(files)
     finalFiles= {}
@@ -17,9 +20,11 @@ module FileOwners
         # byebug
         finalFiles[file[1]] << file[0]
       end
-    end
+      # can be reduced to
+      # files.map do |file|
+      #   !finalFiles.include?(file[1]) ? finalFiles[file[1]] = [file[0]] : finalFiles[file[1]] << file[0]
+      # end
     finalFiles
-    # return nil
   end
 end
 
