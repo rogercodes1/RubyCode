@@ -15,8 +15,8 @@
 # Your task is to clean up differently formatted telephone numbers by removing punctuation and the country code (1) if present.
 #
 # For example, the inputs
-phone_number = "+1 (613)-995-0253"
-# phone_number = "613-995-0153"
+# phone_number = "+1 (613)-995-0253"
+phone_number = "613-995-0153"
 # phone_number = "1 613 995 0253"
 # phone_number = "613.995.0253"
 #
